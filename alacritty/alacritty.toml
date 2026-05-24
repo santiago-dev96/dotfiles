@@ -1,0 +1,14 @@
+[general]
+import = ["vague.toml"]
+
+[window]
+decorations = "None"
+startup_mode = "Fullscreen"
+
+[font]
+normal = { family = "JetBrainsMonoNL NFM", style = "Regular" }
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+blink_interval = 300
+blink_timeout = 0
