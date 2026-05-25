@@ -1,2 +1,12 @@
 unbind C-b
 set -g prefix C-a
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tmux-sensible'
+
+# Initialize tpack (keep this line at the very bottom of tmux.conf)
+run 'tpack init'
+set -g @plugin "tmux-plugins/tmux-resurrect"
+set -g @plugin "tmux-plugins/tmux-continuum"
+set -g @plugin "tmux-plugins/tmux-yank"
+set -g @plugin "erikw/tmux-powerline"
