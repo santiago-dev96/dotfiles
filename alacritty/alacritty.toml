@@ -4,6 +4,7 @@ import = ["vague.toml"]
 [window]
 decorations = "None"
 startup_mode = "Fullscreen"
+option_as_alt = "Both"
 
 [font]
 normal = { family = "JetBrainsMonoNL NFM", style = "Regular" }
