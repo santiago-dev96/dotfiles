@@ -25,7 +25,7 @@ return {
     { '<leader>ff', function() Snacks.picker.smart() end, desc = 'Smart find files' },
     { '<leader>fb', function() Snacks.picker.buffers() end, desc = 'Find buffers' },
     { '<leader>ft', function() Snacks.picker.grep() end, desc = 'Find text (grep)' },
-    { '<leader>fe', function() Snacks.picker.grep_word() end, desc = 'Find word (grep)' },
+    { '<leader>fw', function() Snacks.picker.grep_word() end, desc = 'Find word (grep)' },
     { '<leader>fc', function() Snacks.picker.command_history() end, desc = 'Find in command history' },
     { '<leader>fn', function() Snacks.picker.notifications() end, desc = 'Find in notifications history' },
     { '<leader>fe', function() Snacks.picker.explorer() end, desc = 'Find by using the explorer' },
