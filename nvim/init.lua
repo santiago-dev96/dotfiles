@@ -15,7 +15,6 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
 require('lazy_setup')
-require('telescope_setup')
 require('harpoon_setup')
 require('lualine_setup')
 require('vague_setup')
