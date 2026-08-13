@@ -1,0 +1,36 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 32,
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": ["tray", "network", "cpu", "memory"],
+
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true
+  },
+
+  "clock": {
+    "format": "{:%H:%M}",
+    "tooltip-format": "{:%a, %d %B %Y}"
+  },
+
+  "network": {
+    "format-wifi": "Wifi signal: {signalStrength}%",
+    "format-ethernet": "Connected",
+    "format-disconnected": "Offline"
+  },
+
+  "cpu": {
+    "format": "CPU in use: {usage}%"
+  },
+
+  "memory": {
+    "format": "RAM in use: {used}Gi"
+  },
+
+  "tray": {
+    "spacing": 10
+  }
+}
