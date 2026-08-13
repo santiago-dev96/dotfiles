@@ -53,6 +53,7 @@ hl.on("hyprland.start", function ()
   hl.exec_cmd(terminal)
   hl.exec_cmd(browser)
   hl.exec_cmd(notifications)
+  hl.exec_cmd('uwsm app -- dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP')
 end)
 
 
