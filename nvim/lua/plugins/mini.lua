@@ -6,5 +6,6 @@ return {
     require('mini.operators').setup()
     require('mini.surround').setup()
     require('mini.comment').setup()
+    require('mini.pairs').setup()
   end
 }
