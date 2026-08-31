@@ -1,4 +1,4 @@
 font-family = IosevkaTerm Nerd Font Mono
 theme = TokyoNight Night
-
-split-divider-color = #FFFFFF
+split-divider-color = #1a1b25
+window-theme = dark
