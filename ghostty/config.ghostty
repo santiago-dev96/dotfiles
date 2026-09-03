@@ -1,4 +1,3 @@
-font-family = IosevkaTerm Nerd Font Mono
-theme = 0x96f
-split-divider-color = #1a1b25
-window-theme = dark
+font-family = 0xProto Nerd Font Mono
+theme = Alabaster
+window-theme = light
