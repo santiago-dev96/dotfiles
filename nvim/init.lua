@@ -4,5 +4,5 @@ vim.o.cursorline = true
 vim.o.sw = 2
 vim.o.expandtab = true
 vim.o.tabstop = 2
-vim.cmd[[colorscheme lunaperche]]
-vim.o.background = 'light'
+vim.cmd[[colorscheme catppuccin]]
+vim.o.background = 'dark'
