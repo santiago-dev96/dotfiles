@@ -80,6 +80,58 @@ end, { desc = 'Open diagnostics in the quickfix list' })
 -- Float
 vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { desc = 'Open diagnostics in a floating window' })
 
+-- Git signs (the gutter)
+vim.pack.add({
+  'https://github.com/lewis6991/gitsigns.nvim'
+})
+require('gitsigns').setup({
+  on_attach = function(bufnr)
+    local gitsigns = require('gitsigns')
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
+    end
+    -- Navigation
+    map('n', ']c', function()
+      if vim.wo.diff then
+        vim.cmd.normal({']c', bang = true})
+      else
+        gitsigns.nav_hunk('next')
+      end
+    end)
+    map('n', '[c', function()
+      if vim.wo.diff then
+        vim.cmd.normal({'[c', bang = true})
+      else
+        gitsigns.nav_hunk('prev')
+      end
+    end)
+  end
+})
+
+-- Yazi file manager
+vim.pack.add({
+  'https://github.com/mikavilpas/yazi.nvim'
+})
+vim.keymap.set('n', '<leader>-', function()
+  require('yazi').yazi()
+end)
+vim.g.loaded_netrwPlugin = 1
+vim.api.nvim_create_autocmd('UIEnter', {
+  callback = function()
+    require('yazi').setup({
+      open_for_directories = true
+    })
+  end
+})
+
+-- Surroundings
+vim.pack.add({ {
+  src = 'https://github.com/kylechui/nvim-surround',
+  version = vim.version.range('4.x'),
+} })
+
 -- Visual aid
 vim.o.number = true
 vim.o.relativenumber = true

@@ -1,8 +1,17 @@
 {
   "plugins": {
+    "gitsigns.nvim": {
+      "rev": "aafce231e57bf2c06940b6de90b9f396aee94754",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
     "nvim-lspconfig": {
       "rev": "75e49cfa588a89ca667d767c0afef3ceac205faa",
       "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-surround": {
+      "rev": "2e93e154de9ff326def6480a4358bfc149d5da2c",
+      "src": "https://github.com/kylechui/nvim-surround",
+      "version": "4.0.0 - 5.0.0"
     },
     "nvim-web-devicons": {
       "rev": "5f032a85be210cd1c6ac98861eb3b187ff3bd5eb",
@@ -15,6 +24,10 @@
     "telescope.nvim": {
       "rev": "40aedd8a68c78a656a10a8d62d80c54af59420fb",
       "src": "https://github.com/nvim-telescope/telescope.nvim"
+    },
+    "yazi.nvim": {
+      "rev": "415d7ab69a5d969ce63e10ea2824aaab8d0a2a46",
+      "src": "https://github.com/mikavilpas/yazi.nvim"
     }
   }
 }
