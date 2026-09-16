@@ -127,10 +127,27 @@ vim.api.nvim_create_autocmd('UIEnter', {
 })
 
 -- Surroundings
-vim.pack.add({ {
-  src = 'https://github.com/kylechui/nvim-surround',
-  version = vim.version.range('4.x'),
-} })
+vim.pack.add({
+  {
+    src = 'https://github.com/kylechui/nvim-surround',
+    version = vim.version.range('4.x')
+  }
+})
+
+-- Treesitter
+vim.pack.add({
+  'https://github.com/nvim-treesitter/nvim-treesitter'
+})
+local treesitter = require('nvim-treesitter')
+treesitter.install({'typescript', 'lua', 'javascript'})
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'lua' },
+  callback = function()
+    vim.treesitter.start()
+    vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    vim.wo[0][0].foldmethod = 'expr'
+  end
+})
 
 -- Visual aid
 vim.o.number = true
