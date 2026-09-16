@@ -2,6 +2,7 @@
 vim.pack.add({
   'https:github.com/neovim/nvim-lspconfig',
 })
+
 vim.lsp.enable('ts_ls')
 -- This is just to enable LSP features with a focus on Neovim plugins
 -- and the core LSP API.
@@ -70,11 +71,14 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help ta
 vim.keymap.set('n', '<leader>fs', builtin.lsp_document_symbols, { desc = 'Telescope document symbols' })
 vim.keymap.set('n', '<leader>fw', builtin.lsp_workspace_symbols, { desc = 'Telescope workspace symbols' })
 
+-- LSP Diagnostics
 -- Quickfix
 vim.keymap.set('n', '<leader>do', function()
   vim.diagnostic.setqflist()
   vim.cmd[[cope]]
 end, { desc = 'Open diagnostics in the quickfix list' })
+-- Float
+vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { desc = 'Open diagnostics in a floating window' })
 
 -- Visual aid
 vim.o.number = true
