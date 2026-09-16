@@ -1,9 +1,11 @@
 -- LSP server configurations
 vim.pack.add({
-  'https:github.com/neovim/nvim-lspconfig',
+  'https://github.com/neovim/nvim-lspconfig',
 })
-
-vim.lsp.enable('ts_ls')
+-- Typescript/JavaScript with (or without) JSX
+vim.lsp.config('tsc', require('tsc-config'))
+vim.lsp.enable('tsc')
+-- Lua
 -- This is just to enable LSP features with a focus on Neovim plugins
 -- and the core LSP API.
 vim.lsp.config('lua_ls', {
@@ -134,20 +136,38 @@ vim.pack.add({
   }
 })
 
--- Treesitter
-vim.pack.add({
-  'https://github.com/nvim-treesitter/nvim-treesitter'
-})
-local treesitter = require('nvim-treesitter')
-treesitter.install({'typescript', 'lua', 'javascript'})
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'lua' },
-  callback = function()
-    vim.treesitter.start()
-    vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-    vim.wo[0][0].foldmethod = 'expr'
+-- Print the installed plugins
+vim.api.nvim_create_user_command('Plugins', function()
+  local plugin_names = {}
+
+  -- Method 1: Query vim.pack.get()
+  local pack_plugins = vim.pack.get()
+  for _, p in ipairs(pack_plugins) do
+    -- p.spec.name contains the inferred name (e.g. "oil.nvim")
+    local name = (p.spec and p.spec.name) or p.name
+    if name then
+      table.insert(plugin_names, name)
+    end
   end
-})
+
+  -- Output results
+  if #plugin_names > 0 then
+    vim.notify("Installed Plugins:\n- " .. table.concat(plugin_names, "\n- "), vim.log.levels.INFO)
+  else
+    vim.notify("No plugins found in vim.pack or on disk.", vim.log.levels.WARN)
+  end
+end, { desc = 'List installed plugins' })
+
+-- Catppuccin coloscheme
+vim.pack.add({ { src = 'https://github.com/catppuccin/nvim', name = 'catppuccin' } })
+vim.cmd.colorscheme 'catppuccin-mocha'
+vim.o.background = 'dark'
+
+-- Folding
+vim.o.foldmethod = 'syntax'
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
 
 -- Visual aid
 vim.o.number = true
@@ -159,12 +179,3 @@ vim.o.sw = 2
 vim.o.expandtab = true
 vim.o.tabstop = 2
 
--- Colors
-vim.cmd[[colorscheme catppuccin]]
-vim.o.background = 'dark'
-
--- Folding
-vim.o.foldmethod = 'expr'
-vim.o.foldlevel = 99
-vim.o.foldlevelstart = 99
-vim.o.foldenable = true
