@@ -158,7 +158,7 @@ vim.api.nvim_create_user_command('Plugins', function()
   end
 end, { desc = 'List installed plugins' })
 
--- Catppuccin coloscheme
+-- Catppuccin colorscheme
 vim.pack.add({ { src = 'https://github.com/catppuccin/nvim', name = 'catppuccin' } })
 vim.cmd.colorscheme 'catppuccin-mocha'
 vim.o.background = 'dark'
