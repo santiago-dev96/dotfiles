@@ -164,7 +164,18 @@ vim.cmd.colorscheme 'catppuccin-mocha'
 vim.o.background = 'dark'
 
 -- Folding
-vim.o.foldmethod = 'syntax'
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
+  callback = function()
+    vim.o.foldmethod = 'syntax'
+  end
+})
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'lua',
+  callback = function()
+    vim.o.foldmethod = 'expr'
+  end
+})
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
