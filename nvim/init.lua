@@ -50,7 +50,7 @@ nvim_treesitter.install({
   'css',
   'csv',
   'dockerfile',
-  'git_commit',
+  'gitcommit',
   'git_rebase',
   'gitignore',
   'go',
