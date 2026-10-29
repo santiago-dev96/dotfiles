@@ -14,6 +14,36 @@ vim.o.sw = 2
 vim.o.expandtab = true
 vim.o.tabstop = 2
 
+-- Build hooks
+-- `vim.pack.add()` specs only understand `src`/`name`/`version`/`data`; there
+-- is no `build` field (that is lazy.nvim/rocks.nvim syntax). Builds are run
+-- from `PackChanged` instead, which fires after a plugin is installed/updated.
+-- Register this before the first `vim.pack.add()`: installing from
+-- `nvim-pack-lock.json` happens on the very first vim.pack call of the session.
+vim.api.nvim_create_autocmd('PackChanged', {
+  callback = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+    if kind ~= 'install' and kind ~= 'update' then
+      return
+    end
+
+    -- `:TSUpdate` is defined in the plugin's plugin/ script, which is sourced
+    -- after init.lua finishes, so it can't be called directly here.
+    if name == 'nvim-treesitter' then
+      if not ev.data.active then
+        vim.cmd.packadd('nvim-treesitter')
+      end
+      vim.cmd('TSUpdate')
+    end
+
+    -- Native extension without prebuilt artifacts.
+    -- `:wait()` so the library exists before the plugin is loaded/used.
+    if name == 'telescope-fzf-native.nvim' then
+      vim.system({ 'make' }, { cwd = ev.data.path }):wait()
+    end
+  end,
+})
+
 -- Statusline
 vim.pack.add({
   'https://github.com/nvim-tree/nvim-web-devicons',
@@ -23,20 +53,6 @@ vim.o.showmode = false
 require('lualine').setup()
 
 -- Language syntax parsers (Treesitter)
--- `:TSUpdate` is defined in the plugin's plugin/ script, which is sourced
--- after init.lua finishes, so it can't be called directly here. Run it as a
--- build hook when the plugin is installed or updated.
-vim.api.nvim_create_autocmd('PackChanged', {
-  callback = function(ev)
-    if ev.data.spec.name == 'nvim-treesitter'
-      and (ev.data.kind == 'install' or ev.data.kind == 'update') then
-      if not ev.data.active then
-        vim.cmd.packadd('nvim-treesitter')
-      end
-      vim.cmd('TSUpdate')
-    end
-  end,
-})
 vim.pack.add({
   'https://github.com/nvim-treesitter/nvim-treesitter'
 })
@@ -179,3 +195,10 @@ vim.lsp.enable('sqlls')
 vim.lsp.enable('tailwindcss')
 vim.lsp.enable('ts_ls')
 vim.lsp.enable('yamlls')
+
+-- File picker
+vim.pack.add({
+  { src = 'nvim-lua/plenary.nvim' },
+  { src = 'nvim-telescope/telescope-fzf-native.nvim' },
+  { src = 'nvim-telescope/telescope.nvim', version = '*' },
+})
