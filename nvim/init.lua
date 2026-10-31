@@ -14,6 +14,10 @@ vim.o.sw = 2
 vim.o.expandtab = true
 vim.o.tabstop = 2
 
+-- Leader key
+vim.g.mapleader = ' '
+vim.g.maplocalleader = '\\'
+
 -- Colors
 vim.cmd.colorscheme 'lunaperche'
-vim.o.background = 'light'
+vim.o.bg = 'light'
