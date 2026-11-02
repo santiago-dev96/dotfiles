@@ -1,8 +1,7 @@
 font-family = 0xProto Nerd Font Mono
-theme = Modus Operandi
-window-theme = light
-font-size = 11
+theme = Catppuccin Mocha
+window-theme = dark
+font-size = 12
 cursor-style = block
 cursor-style-blink = true
 shell-integration-features = no-cursor
-macos-icon = paper
